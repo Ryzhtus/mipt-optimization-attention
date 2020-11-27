@@ -29,7 +29,7 @@ TASK_3_ARTICLE_ID_COL=0
 TASK_3_TECHNIQUE_NAME_COL=1
 TASK_3_FRAGMENT_START_COL=2
 TASK_3_FRAGMENT_END_COL=3
-TECHNIQUE_NAMES_FILE="data/propaganda-techniques-names.txt"
+TECHNIQUE_NAMES_FILE= "data/propaganda-techniques-names.txt"
 
 
 
