@@ -2,6 +2,7 @@ import numpy as np
 import torch
 from torch import nn
 import warnings
+
 warnings.filterwarnings('ignore')
 
 
@@ -10,7 +11,7 @@ def train_epoch(model, data, criterion, optimizer, device, train_examples, sched
 
     train_loss_values = []
     correct_predictions = 0
-    
+
     for batch in data:
         input_ids = batch["input_ids"].to(device)
         attention_mask = batch["attention_mask"].to(device)
@@ -47,7 +48,7 @@ def eval_epoch(model, data, criterion, device, eval_examples):
             targets = batch["targets"].to(device)
 
             outputs = model(input_ids=input_ids, attention_mask=attention_mask)
-            
+
             _, preds = torch.max(outputs, dim=1)
 
             loss = criterion(outputs, targets)
@@ -58,18 +59,19 @@ def eval_epoch(model, data, criterion, device, eval_examples):
     return correct_predictions.double() / eval_examples, np.mean(evaluation_loss_values)
 
 
-def train(model, train_data, eval_data, criterion, optimizer, epochs, device, train_examples, eval_examples):
+def train(model, train_data, eval_data, criterion, optimizer, device, train_examples,
+          eval_examples, scheduler=None, epochs=4):
     train_loss_values = []
     train_metrics = []
     eval_loss_values = []
     eval_metrics = []
 
     for epoch in range(epochs):
-
         print(f'Epoch {epoch + 1}/{epochs}')
         print('-' * 10)
 
-        train_accuracy, train_loss = train_epoch(model, train_data, criterion, optimizer, device, train_examples)
+        train_accuracy, train_loss = train_epoch(model, train_data, criterion, optimizer, device, train_examples,
+                                                 scheduler=scheduler)
 
         print(f'Train loss {train_loss} | Train accuracy {train_accuracy}')
 
@@ -80,7 +82,7 @@ def train(model, train_data, eval_data, criterion, optimizer, epochs, device, tr
 
         train_loss_values.append(train_loss)
         eval_loss_values.append(eval_loss)
-        
+
         train_metrics.append(train_accuracy)
         eval_metrics.append(eval_accuracy)
 
