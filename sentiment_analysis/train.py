@@ -3,7 +3,7 @@ import torch
 from torch import nn
 
 
-def train_epoch(model, data, criterion, optimizer, device, n_examples):
+def train_epoch(model, data, criterion, optimizer, device, train_examples):
     model = model.train()
 
     train_loss_values = []
@@ -27,10 +27,10 @@ def train_epoch(model, data, criterion, optimizer, device, n_examples):
         optimizer.step()
         optimizer.zero_grad()
 
-    return correct_predictions.double() / n_examples, np.mean(train_loss_values)
+    return correct_predictions.double() / train_examples, np.mean(train_loss_values)
 
 
-def eval_epoch(model, data, criterion, device, n_examples):
+def eval_epoch(model, data, criterion, device, eval_examples):
     model = model.eval()
 
     evaluation_loss_values = []
@@ -51,10 +51,10 @@ def eval_epoch(model, data, criterion, device, n_examples):
             correct_predictions += torch.sum(preds == targets)
             evaluation_loss_values.append(loss.item())
 
-    return correct_predictions.double() / n_examples, np.mean(evaluation_loss_values)
+    return correct_predictions.double() / eval_examples, np.mean(evaluation_loss_values)
 
 
-def train(model, train_data, eval_data, criterion, optimizer, epochs, device):
+def train(model, train_data, eval_data, criterion, optimizer, epochs, device, train_examples, eval_examples):
     train_loss_values = []
     train_metrics = []
     eval_loss_values = []
