@@ -1,9 +1,11 @@
 import numpy as np
 import torch
 from torch import nn
+import warnings
+warnings.filterwarnings('ignore')
 
 
-def train_epoch(model, data, criterion, optimizer, device, train_examples):
+def train_epoch(model, data, criterion, optimizer, device, train_examples, scheduler=None):
     model = model.train()
 
     train_loss_values = []
@@ -25,6 +27,8 @@ def train_epoch(model, data, criterion, optimizer, device, train_examples):
         loss.backward()
         nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
         optimizer.step()
+        if scheduler:
+            scheduler.step()
         optimizer.zero_grad()
 
     return correct_predictions.double() / train_examples, np.mean(train_loss_values)
@@ -65,13 +69,13 @@ def train(model, train_data, eval_data, criterion, optimizer, epochs, device, tr
         print(f'Epoch {epoch + 1}/{epochs}')
         print('-' * 10)
 
-        train_accuracy, train_loss = train_epoch(model, train_data, criterion, optimizer, device, len(train_data))
+        train_accuracy, train_loss = train_epoch(model, train_data, criterion, optimizer, device, train_examples)
 
-        print(f'Train loss {train_loss} accuracy {train_accuracy}')
+        print(f'Train loss {train_loss} | Train accuracy {train_accuracy}')
 
-        eval_accuracy, eval_loss = eval_epoch(model, eval_data, criterion, device, len(eval_data))
+        eval_accuracy, eval_loss = eval_epoch(model, eval_data, criterion, device, eval_examples)
 
-        print(f'Val   loss {eval_loss} accuracy {eval_accuracy}')
+        print(f'Val   loss {eval_loss} | Train accuracy {eval_accuracy}')
         print()
 
         train_loss_values.append(train_loss)
