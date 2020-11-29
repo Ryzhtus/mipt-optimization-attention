@@ -3,7 +3,7 @@ from torch import nn
 import numpy as np
 
 
-def train_epoch(model, data, optimizer, criterion, device, data_length, scheduler=None):
+def train_epoch(model, data, criterion, optimizer, device, data_length, scheduler=None):
     model = model.train()
 
     train_loss_values = []
