@@ -7,7 +7,7 @@ warnings.filterwarnings('ignore')
 
 
 def train_epoch(model, data, criterion, optimizer, device, train_examples, scheduler=None):
-    model = model.train()
+    model = model.train_sentiment()
 
     train_loss_values = []
     correct_predictions = 0
@@ -59,8 +59,8 @@ def eval_epoch(model, data, criterion, device, eval_examples):
     return correct_predictions.double() / eval_examples, np.mean(evaluation_loss_values)
 
 
-def train(model, train_data, eval_data, criterion, optimizer, device, train_examples,
-          eval_examples, scheduler=None, epochs=4):
+def train_sentiment(model, train_data, eval_data, criterion, optimizer, device, train_examples,
+                    eval_examples, scheduler=None, epochs=4):
     train_loss_values = []
     train_metrics = []
     eval_loss_values = []

@@ -4,7 +4,7 @@ import numpy as np
 
 
 def train_epoch(model, data, optimizer, criterion, device, data_length, scheduler=None):
-    model.train()
+    model.train_sentiment()
 
     train_loss_values = []
     correct_predictions = 0
@@ -69,8 +69,8 @@ def eval_epoch(model, data, criterion, device, data_length):
     return epoch_accuracy, epoch_loss
 
 
-def train(model, train_data, eval_data, optimizer, criterion, train_data_length, eval_data_length,
-          device, scheduler=None, epochs=4):
+def train_ner(model, train_data, eval_data, criterion, optimizer, train_data_length, eval_data_length,
+              device, scheduler=None, epochs=4):
     train_loss_values = []
     train_metrics = []
     eval_loss_values = []
