@@ -4,7 +4,7 @@ import numpy as np
 
 
 def train_epoch(model, data, optimizer, criterion, device, data_length, scheduler=None):
-    model.train_sentiment()
+    model = model.train()
 
     train_loss_values = []
     correct_predictions = 0
@@ -40,7 +40,7 @@ def train_epoch(model, data, optimizer, criterion, device, data_length, schedule
 
 
 def eval_epoch(model, data, criterion, device, data_length):
-    model.eval()
+    model = model.eval()
 
     eval_loss_values = []
     correct_predictions = 0
