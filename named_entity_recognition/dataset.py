@@ -44,11 +44,11 @@ def read_data(filename):
     return sentences, sentences_tags, tags_number
 
 
-def create_dataloader(filename, batch_size, tokenizer, max_length):
+def create_dataset_and_dataloader(filename, batch_size, tokenizer, max_length):
     sentences, tags, tags_number = read_data(filename)
     dataset = ConLL2003Dataset(sentences, tags, tags_number, tokenizer, max_length)
 
-    return DataLoader(dataset, batch_size, num_workers=4),
+    return dataset, DataLoader(dataset, batch_size, num_workers=4),
 
 
 TAGS = ('<PAD>', 'O', 'I-LOC', 'B-PER', 'I-PER', 'I-ORG', 'I-MISC', 'B-MISC', 'B-LOC', 'B-ORG')
