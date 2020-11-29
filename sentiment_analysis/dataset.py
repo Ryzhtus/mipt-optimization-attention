@@ -1,7 +1,6 @@
 import torch
 from torch.utils.data import Dataset, DataLoader
 
-
 class GPReviewDataset(Dataset):
     def __init__(self, reviews, targets, tokenizer, max_len):
         self.reviews = reviews
@@ -20,12 +19,9 @@ class GPReviewDataset(Dataset):
                                               return_token_type_ids=False, pad_to_max_length=True,
                                               return_attention_mask=True, return_tensors='pt', truncation=True)
 
-        return {
-            'review_text': review,
-            'input_ids': encoding['input_ids'].flatten(),
-            'attention_mask': encoding['attention_mask'].flatten(),
-            'targets': torch.tensor(target, dtype=torch.long)
-        }
+        return {'review_text': review, 'input_ids': encoding['input_ids'].flatten(),
+                'attention_mask': encoding['attention_mask'].flatten(),
+                'targets': torch.tensor(target, dtype=torch.long)}
 
 
 def create_data_loader(data, tokenizer, max_len, batch_size):

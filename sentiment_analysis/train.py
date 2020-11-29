@@ -77,7 +77,7 @@ def train(model, train_data, eval_data, criterion, optimizer, device, train_exam
 
         eval_accuracy, eval_loss = eval_epoch(model, eval_data, criterion, device, eval_examples)
 
-        print(f'Val   loss {eval_loss} | Train accuracy {eval_accuracy}')
+        print(f'Eval   loss {eval_loss} | Eval accuracy {eval_accuracy}')
         print()
 
         train_loss_values.append(train_loss)
