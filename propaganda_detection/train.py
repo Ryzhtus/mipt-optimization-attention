@@ -7,7 +7,7 @@ def flat_accuracy(predictions, labels):
     predictions_flat = torch.argmax(predictions, dim=2).flatten()
     labels_flat = labels.flatten()
 
-    return np.sum(predictions_flat == labels_flat) / len(labels_flat)
+    return torch.sum(predictions_flat == labels_flat).item() / len(labels_flat)
 
 
 def train_epoch(model, data, optimizer, device):
