@@ -30,7 +30,7 @@ def train_epoch(model, data, optimizer, device):
         loss.backward()
 
         train_loss += loss.item()
-        train_accuracy += flat_accuracy(logits, labels.to('cpu').numpy())
+        train_accuracy += flat_accuracy(logits, labels)
         number_train_examples += input_ids.size(0)
         number_train_steps += 1
 
@@ -67,7 +67,7 @@ def eval_epoch(model, data, device, tags_values):
         true_labels.append(labels)
 
         eval_loss += tmp_eval_loss.mean().item()
-        eval_accuracy += flat_accuracy(logits, labels.to('cpu').numpy())
+        eval_accuracy += flat_accuracy(logits, labels)
 
         number_eval_examples += input_ids.size(0)
         number_eval_steps += 1
