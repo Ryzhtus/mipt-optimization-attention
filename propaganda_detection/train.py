@@ -4,7 +4,7 @@ from sklearn.metrics import f1_score
 
 
 def flat_accuracy(predictions, labels):
-    predictions_flat = np.argmax(predictions, axis=2).flatten()
+    predictions_flat = torch.argmax(predictions, dim=2).flatten()
     labels_flat = labels.flatten()
 
     return np.sum(predictions_flat == labels_flat) / len(labels_flat)
