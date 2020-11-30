@@ -60,8 +60,6 @@ def eval_epoch(model, data, device, tags_values):
             outputs = model(**inputs)
             tmp_eval_loss, logits = outputs[:2]
 
-        logits = logits.detach().cpu().numpy()
-
         predictions.extend([list(p) for p in np.argmax(logits, axis=2)])
 
         true_labels.append(labels)
