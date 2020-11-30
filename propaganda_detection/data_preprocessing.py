@@ -5,16 +5,10 @@ import time
 import re
 from tqdm import tqdm
 
-"""
 train_articles_path = 'data/propaganda_detection/datasets/train-articles/'
 dev_articles_path = 'data/propaganda_detection/datasets/dev-articles/'
 y_path_train = 'data/propaganda_detection/datasets/train-task-si.labels'
-y_path_dev = 'data/propaganda_detection/datasets/dev-task-si.labels'"""
-
-train_articles_path = r'C:\Users\shkun\Documents\Учеба\МФТИ\Методы оптимизации\mipt-opt\data\propaganda_detection\datasets\train-articles/'
-dev_articles_path = r'C:\Users\shkun\Documents\Учеба\МФТИ\Методы оптимизации\mipt-opt\data\propaganda_detection\datasets\dev-articles/'
-y_path_train = r'C:\Users\shkun\Documents\Учеба\МФТИ\Методы оптимизации\mipt-opt\data\propaganda_detection\datasets\train-task-si.labels'
-y_path_dev = r'C:\Users\shkun\Documents\Учеба\МФТИ\Методы оптимизации\mipt-opt\data\propaganda_detection\datasets\dev-task-si.labels'
+y_path_dev = 'data/propaganda_detection/datasets/dev-task-si.labels'
 
 
 def indices_sentence(article_id, article_path):
