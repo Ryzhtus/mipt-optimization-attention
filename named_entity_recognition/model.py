@@ -9,8 +9,8 @@ class BertNER(nn.Module):
         self.fc = nn.Linear(self.bert.config.hidden_size, n_classes)
 
     def forward(self, input_ids, attention_mask):
-        encoded_layers, _ = self.bert(input_ids=input_ids, attention_mask=attention_mask)
-        x = encoded_layers
+        encoded_layers = self.bert(input_ids=input_ids, attention_mask=attention_mask)
+        x = encoded_layers[0]
         logits = self.fc(x)
 
         return logits
