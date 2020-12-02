@@ -7,7 +7,7 @@ warnings.filterwarnings('ignore')
 
 
 def train_epoch(model, data, criterion, optimizer, device, train_examples, scheduler=None):
-    model = model.train()
+    model.train()
 
     train_loss_values = []
     correct_predictions = 0
@@ -36,7 +36,7 @@ def train_epoch(model, data, criterion, optimizer, device, train_examples, sched
 
 
 def eval_epoch(model, data, criterion, device, eval_examples):
-    model = model.eval()
+    model.eval()
 
     evaluation_loss_values = []
     correct_predictions = 0
