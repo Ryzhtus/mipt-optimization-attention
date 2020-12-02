@@ -14,4 +14,4 @@
 * sentiment_analysis - модуль с функциями для Sentiment Analysis
 * optimizers - модуль с реализацией алгоритмов стохастической оптимизации
 
-Все эксперименты приведены в Colab Notebook - **будующий линк**
+Все эксперименты приведены в этом [Colab Notebook](https://colab.research.google.com/drive/11ZXU6hSDU_v41pf8ohN5cHv_hbmUEA1E?usp=sharing)
